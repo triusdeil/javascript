@@ -61,4 +61,88 @@ const mascotas = {
   mascotas.id = 1;
   mascotas.comida = ["perrarina", "agua", "carne"];
   console.log(mascotas);
-      
+  
+  //Destructuring
+  const mascotas = {
+    nombre: "Tom",
+    edad: 10,
+    vivo: true,
+    razas: ["peludos", "negro con blanco"]
+  };
+  
+  const {vivo,nombre} = mascotas
+  console.log(vivo, nombre)
+  //objetos practica 
+  //objetos
+const web = {
+  nombre: "bluuweb",
+  links: {
+    enlace: "www.bluuweb.cl"
+  },
+  redesSociales: {
+    youtube: {
+      enlace: "www.youtube.com",
+      nombre: "bluuweb/youtube"
+    }
+  }
+};
+console.log(web);
+console.log(web.nombre);
+console.log(web.redesSociales.youtube);
+
+const enlaceyoutube = web.redesSociales.youtube;
+console.log(enlaceyoutube);
+const { enlace, nombre } = web.redesSociales.youtube;
+console.log(enlace, nombre);
+
+//fetch
+fetch("https://pokeapi.co/api/v2/pokemon/")
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data.results);
+    data.results.forEach((element) => {
+      console.log(element.name);
+    });
+  })
+  .catch((error) => console.log(error));
+////async
+const obtenerPokemones = async () => {
+  try {
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon/");
+    const data = await res.json();
+    console.log(data.results);
+    data.results.forEach((element) => {
+      console.log(element.name);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+obtenerPokemones();
+
+//Map
+const obtenerPokemones = async () => {
+  try {
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon/");
+    const data = await res.json();
+    console.log(data.results);
+    const arrayNombre = data.results.map((poke) => poke.name);
+    console.log(arrayNombre)
+  } catch (error) {
+    console.log(error);
+  }
+};
+obtenerPokemones();
+//filter
+const obtenerPokemones = async () => {
+  try {
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon/");
+    const data = await res.json();
+    console.log(data.results);
+    const arrayNombre = data.results.filter(poke => poke.name !== "bulbasur");
+    console.log(arrayNombre);
+  } catch (error) {
+    console.log(error);
+  }
+};
+obtenerPokemones();
